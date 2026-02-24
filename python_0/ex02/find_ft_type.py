@@ -1,3 +1,5 @@
+# find_ft_type.py
+
 def all_thing_is_obj(object: any) -> int:
     """
     Analyse le type d'un objet et affiche un message formaté.

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # tester.py
 
 from find_ft_type import all_thing_is_obj
