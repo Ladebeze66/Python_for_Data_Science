@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ft_package"
+version = "0.0.1"
+description = "A sample test package"
+authors = [
+    {name = "fgras-ca", email = "fgras-ca@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/Ladebeze66/ft_package"
+
+[tool.setuptools]
+packages = ["ft_package"]

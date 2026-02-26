@@ -438,7 +438,7 @@ Vous pouvez utiliser get_terminal_size pour vous adapter à la taille de votre t
 ## My first package creation
 
 **Dossier :** ex09/\
-**Fichiers :** *.py, *.txt, *.toml, README.md, LICENSE\
+**Fichiers :** *.py, *.txt, *.toml, README.md, LICENSE
 **Fonctions autorisées :** PyPI ou toute librairie pour la création de package
 
 Créez votre premier package en python comme vous le souhaitez, il apparaîtra dans la liste des packages installés quand vous tapez la commande "pip list" et affichera ses caractéristiques quand vous tapez "pip show -v ft_package"
