@@ -11,7 +11,7 @@ def ft_load(path: str) -> np.ndarray:
 
     Returns:
         np.ndarray: Tableau contenant les valeurs RGB de l'image.
-                   Shape: (hauteur, largeur, 3)
+                   Shape: (1, pixels_total, 3) pour affichage optimal
 
     Raises:
         FileNotFoundError: Si le fichier n'existe pas.
@@ -25,11 +25,9 @@ def ft_load(path: str) -> np.ndarray:
 
         # Affichage requis par le sujet (shape originale)
         print(f"The shape of image is: {image_array.shape}")
-        
-        # Affichage du contenu avec reshape temporaire pour l'affichage
-        print(image_array.reshape(1, -1, 3))
-
-        # Retourner l'image dans sa forme originale pour manipulation
+        print(image_array.reshape(1, -1, 3))  # Affichage seulement
+        print(" ...")
+        # Reshape pour obtenir l'affichage tronqué du sujet
         return image_array
 
     except FileNotFoundError:

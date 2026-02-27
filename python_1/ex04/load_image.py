@@ -24,10 +24,10 @@ def ft_load(path: str) -> np.ndarray:
         image_array = np.array(image, dtype=np.uint8)
 
         # Affichage requis par le sujet (shape originale)
-        print(f"The shape of image is: {image_array.shape}")
-        
+        # print(f"The shape of image is: {image_array.shape}")
+
         # Affichage du contenu avec reshape temporaire pour l'affichage
-        print(image_array.reshape(1, -1, 3))
+        # print(image_array.reshape(1, -1, 3))
 
         # Retourner l'image dans sa forme originale pour manipulation
         return image_array
