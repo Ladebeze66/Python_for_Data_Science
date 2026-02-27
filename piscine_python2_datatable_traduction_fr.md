@@ -22,107 +22,132 @@ Version : 1.00
 
 # Chapitre I --- Règles générales
 
--   Rendre les modules depuis le cluster ou une machine virtuelle
-    configurée.
--   Tout doit être installé avant les évaluations.
--   Les fonctions ne doivent pas planter.
--   Créer vos propres tests est conseillé.
--   Seul le dépôt Git est évalué.
--   Python **3.10 obligatoire**.
--   Imports explicites (`import numpy as np`).
--   Aucune variable globale.
--   Par Odin, par Thor... utilisez votre cerveau !
+• Vous devez rendre vos modules depuis un ordinateur du cluster en utilisant soit une machine virtuelle :
+  ◦ Vous pouvez choisir le système d'exploitation à utiliser pour votre machine virtuelle
+  ◦ Votre machine virtuelle doit avoir tous les logiciels nécessaires pour réaliser votre projet. Ces logiciels doivent être configurés et installés.
+• Ou vous pouvez utiliser l'ordinateur directement si les outils sont disponibles.
+  ◦ Assurez-vous d'avoir l'espace sur votre session pour installer ce dont vous avez besoin pour tous les modules (utilisez le goinfre si votre campus en a un)
+  ◦ Vous devez avoir tout installé avant les évaluations
+• Vos fonctions ne doivent pas quitter de manière inattendue (segmentation fault, bus error, double free, etc) en dehors des comportements non définis. Si cela arrive, votre projet sera considéré comme non fonctionnel et recevra un 0 pendant l'évaluation.
+• Nous vous encourageons à créer des programmes de test pour votre projet même si ce travail n'aura pas à être rendu et ne sera pas noté. Cela vous donnera une chance de tester facilement votre travail et celui de vos pairs. Vous trouverez ces tests particulièrement utiles pendant votre soutenance. En effet, pendant la soutenance, vous êtes libre d'utiliser vos tests et/ou les tests du pair que vous évaluez.
+• Rendez votre travail dans votre dépôt git assigné. Seul le travail dans le dépôt git sera noté. Si Deepthought est assigné pour noter votre travail, cela sera fait après vos peer-évaluations. Si une erreur arrive dans n'importe quelle section de votre travail pendant la notation de Deepthought, l'évaluation s'arrêtera.
+• Vous devez utiliser la version Python 3.10
+• Vos imports de lib doivent être explicites, par exemple vous devez "import numpy as np". Importer "from pandas import *" n'est pas autorisé, et vous aurez 0 à l'exercice.
+• Il n'y a pas de variable globale.
+• Par Odin, par Thor ! Utilisez votre cerveau !!!
 
 ------------------------------------------------------------------------
 
 # Chapitre II --- Instructions spécifiques du jour
 
--   Aucun code dans le scope global.
--   Chaque programme doit contenir :
+• Aucun code dans le scope global. Utilisez des fonctions !
+• Chaque programme doit avoir son main et ne pas être un simple script :
 
-```{=html}
-<!-- -->
+```python
+def main():
+    # vos tests et votre gestion d'erreur
+    
+if __name__ == "__main__":
+    main()
 ```
-    def main():
-        pass
 
-    if __name__ == "__main__":
-        main()
+• Toute exception non gérée invalidera les exercices, même dans le cas d'une erreur que vous étiez censé tester.
+• Vous pouvez utiliser n'importe quelle fonction built-in si elle n'est pas interdite dans l'exercice.
+• Toutes vos fonctions doivent avoir une documentation (__doc__)
+• Votre code doit être à la norme
+  ◦ pip install flake8
+  ◦ alias norminette=flake8
 
--   Toute exception non gérée invalide l'exercice.
--   Toutes les fonctions doivent avoir une docstring.
--   Respecter la norme flake8.
--   Les datasets utilisés proviennent de GAPMINDER (CC-BY).
+Pour ce module, nous utiliserons des données de FREE SCHOOL MATERIALS FROM GAPMINDER.ORG, CC-BY LICENSE.
+Nous vous encourageons à jeter un œil aux données disponibles si vous voulez vous entraîner à manipuler des données ou faire de la visualisation de données.
 
 ------------------------------------------------------------------------
 
 # Chapitre III --- Exercice 00
 
-## Load my Dataset
+## Exercice 00: Load my Dataset
 
-**Fichier :** load_csv.py\
-Librairies autorisées : pandas ou équivalent.
+**Répertoire de rendu :** ex00/  
+**Fichiers à rendre :** load_csv.py  
+**Fonctions autorisées :** pandas ou toute lib pour la manipulation de dataset  
 
-Créer :
+Créez une fonction qui prend un chemin en argument, écrit les dimensions du dataset et le retourne. Vous devez gérer les cas d'erreur et retourner None si le chemin est mauvais, mauvais format...
 
-    def load(path: str):
+```python
+def load(path: str) -> Dataset:  # (Vous devez adapter le type de retour selon votre librairie)
+    # votre code ici
+```
 
--   Charger un dataset CSV.
--   Afficher ses dimensions.
--   Retourner le dataset.
--   Retourner `None` en cas d'erreur.
+Votre script de test :
+
+```python
+from load_csv import load
+print(load("life_expectancy_years.csv"))
+```
+
+```bash
+$> python tester.py
+Loading dataset of dimensions (195, 302)
+country 1800 1801 1802 1803 ... 2096 2097 2098 2099 2100
+Afghanistan 28.2 28.2 28.2 28.2 ... 76.2 76.4 76.5 76.6 76.8
+...
+$>
+```
+
+Vous pouvez afficher le Dataset dans n'importe quel format que vous aimez, le format donné n'est pas restrictif.
 
 ------------------------------------------------------------------------
 
 # Chapitre IV --- Exercice 01
 
-## draw my country
+## Exercice 01: draw my country
 
-**Fichiers :** - load_csv.py - aff_life.py
+**Répertoire de rendu :** ex01/  
+**Fichiers à rendre :** load_csv.py, aff_life.py  
+**Fonctions autorisées :** matplotlib, seaborn ou toute lib pour la visualisation de données  
 
-Créer un programme qui :
+Créez un programme qui appelle la fonction load de l'exercice précédent, charge le fichier life_expectancy_years.csv, et affiche les informations du pays de votre campus. Votre graphique doit avoir un titre et une légende pour chaque axe.
 
--   Charge `life_expectancy_years.csv`
--   Affiche l'évolution pour le pays de ton campus
--   Graph avec titre et axes légendés
+Par exemple, pour les campus 42 en France nous aurons ce résultat.
 
 ------------------------------------------------------------------------
 
 # Chapitre V --- Exercice 02
 
-## compare my country
+## Exercice 02: compare my country
 
-**Fichiers :** - load_csv.py - aff_pop.py
+**Répertoire de rendu :** ex02/  
+**Fichiers à rendre :** load_csv.py, aff_pop.py  
+**Fonctions autorisées :** matplotlib, seaborn ou toute lib pour la visualisation de données  
 
-Créer un programme qui :
+Créez un programme qui appelle la fonction load du premier exercice, charge le fichier population_total.csv, et affiche les informations du pays de votre campus versus un autre pays de votre choix. Votre graphique doit avoir un titre, une légende pour chaque axe et une légende pour chaque graphique.
 
--   Charge `population_total.csv`
--   Compare ton pays avec un autre
--   Affiche les années **1800 à 2050**
--   Graph avec titre et légendes
+Vous devez afficher les années de 1800 à 2050.
+
+Par exemple, pour les campus 42 en France nous aurons ce résultat.
 
 ------------------------------------------------------------------------
 
 # Chapitre VI --- Exercice 03
 
-## draw my year
+## Exercice 03: draw my year
 
-**Fichiers :** - load_csv.py - projection_life.py
+**Répertoire de rendu :** ex03/  
+**Fichiers à rendre :** load_csv.py, projection_life.py  
+**Fonctions autorisées :** matplotlib, seaborn ou toute lib pour la visualisation de données et votre lib de l'ex00  
 
-Créer un programme qui :
+Créez un programme qui appelle la fonction load du premier exercice, charge les fichiers "income_per_person_gdppercapita_ppp_inflation_adjusted.csv" et "life_expectancy_years.csv", et affiche la projection de l'espérance de vie en relation avec le produit national brut de l'année 1900 pour chaque pays.
 
--   Charge :
-    -   income_per_person_gdppercapita_ppp_inflation_adjusted.csv
-    -   life_expectancy_years.csv
--   Affiche la projection espérance de vie vs PIB pour **1900**
--   Graph avec titres et axes légendés
+Votre graphique doit avoir un titre, une légende pour chaque axe et une légende pour chaque graphique.
 
-Objectif : observer la corrélation entre espérance de vie et PIB.
+Vous devez afficher l'année 1900.
+
+**Voyez-vous une corrélation entre l'espérance de vie et le produit intérieur brut ?**
 
 ------------------------------------------------------------------------
 
 # Chapitre VII --- Rendu et peer-évaluation
 
--   Déposer le projet dans le dépôt Git.
--   Vérifier noms fichiers et dossiers.
--   L'évaluation se fait sur la machine du groupe évalué.
+Rendez votre travail dans votre dépôt Git comme d'habitude. Seul le travail à l'intérieur de votre dépôt sera évalué pendant la soutenance. N'hésitez pas à vérifier deux fois les noms de vos dossiers et fichiers pour vous assurer qu'ils sont corrects.
+
+**Le processus d'évaluation se déroulera sur l'ordinateur du groupe évalué.**
